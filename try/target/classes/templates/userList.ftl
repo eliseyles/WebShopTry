@@ -20,5 +20,4 @@ List of users
 </#list>
     </tbody>>
 </table>
-<div> <a href = "/main">main form</a> </div>
 </@c.page>

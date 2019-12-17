@@ -1,11 +1,17 @@
 <#import "parts/common.ftl" as c>
-<#import "parts/login.ftl" as l>
 
 <@c.page>
-    <div>
-        <@l.logout />
-        <span><a href = "/user">user list</a></span>
+
+
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <form method="get" action="/main" class="form-inline">
+            <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search by title">
+            <button type="submit" class="btn btn-primary ml-2">Search</button>
+        </form>
     </div>
+</div>
+
     <div>
         <form method="post">
             <input type="text" name="title" placeholder="Введите название" />
@@ -14,20 +20,20 @@
         </form>
     </div>
 
-    <div>Список продуктов</div>
-    <form method="get" action="/main">
-        <input type="text" name="filter" value = ${(filter)!}>
-        <button type="submit">Найти</button>
-    </form>
 
+<div class="card-columns">
     <#list products as pr>
-        <div>
-            <b>${pr.id}</b>
+    <div class="card my-3">
+        <div class="m-2">
             <span>${pr.title}</span>
+        </div>
+        <div class="card-footer text-muted">
             <strong>${pr.ownerName}</strong>
         </div>
+    </div>
     <#else>
-        No products
+    No products
     </#list>
+</div>
 </@c.page>
 
