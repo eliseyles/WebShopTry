@@ -25,9 +25,16 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(Map<String, Object> model) {
-        Iterable<Product> products = productRepository.findAll();
+    public String main(@RequestParam(required = false) String filter, Map<String, Object> model) {
+        Iterable<Product> products;
+
+        if(filter != null && !filter.isEmpty()) {
+             products = productRepository.findByTitle(filter);
+        } else {
+            products = productRepository.findAll();
+        }
         model.put("products", products);
+        model.put("filter", filter);
         return "main";
     }
 
@@ -45,13 +52,6 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("filter")
-    public String filter(@RequestParam String title, Map<String, Object> model) {
 
-        List<Product> products = productRepository.findByTitle(title);
-        model.put("products", products);
-
-        return "main";
-    }
 
 }

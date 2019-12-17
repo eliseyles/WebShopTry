@@ -1,6 +1,6 @@
-<#import "parts/common.ftl" as common>
+<#import "parts/common.ftl" as c>
 
-<@common.page>
-<h5>Hello, guest</h5>
-<div>This is brend online store!</div>
-</@common.page>
+<@c.page>
+<div>Hello, user</div>
+<a href="/main">Main page</a>
+</@c.page>
