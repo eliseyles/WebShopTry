@@ -23,51 +23,33 @@ public class ProductListController {
     @Autowired
     private ProductRepository productRepository;
 
-//    @GetMapping
-//    public String registration(){
-//        return "productList";
-//    }
 
     @GetMapping
-//    public String productList(@AuthenticationPrincipal User user, Model model) {
-//        Iterable<Product> products = productRepository.findByOwner(user);
-//        model.addAttribute("products", products);
-//        return "productList";
-//    }
     public String productList(@AuthenticationPrincipal User user, Map<String, Object> model) {
         Iterable<Product> products = productRepository.findByOwner(user);
-
-//
         model.put("products", products);
-//        model.put("filter", filter);
         return "productList";
     }
-//
-//    @GetMapping("{product}")
-//    public String userEditForm(@PathVariable Product product, Model model) {
-//        model.addAttribute("product", product);
-//        return "userEdit";
-//    }
 
-//    @PostMapping
-//    public String userSave(
-//            @RequestParam String username,
-//            @RequestParam Map<String, Object> form,
-//            @RequestParam("userId") User user){
-//        user.setUsername(username);
-//
-//        Set<String> roles = Arrays.stream(Role.values())
-//                .map(Role::name)
-//                .collect(Collectors.toSet());
-//
-//        user.getRoles().clear();
-//
-//        for (String key : form.keySet()) {
-//            if (roles.contains(key)) {
-//                user.getRoles().add(Role.valueOf(key));
-//            }
-//        }
-//        userRepository.save(user);
-//        return "redirect:/user";
-//    }
+    @GetMapping("{product}")
+    public String userEditForm(@PathVariable Product product, Model model) {
+        model.addAttribute("product", product);
+//        model.addAttribute("roles", Role.values());
+        return "productEdit";
+    }
+
+    @PostMapping
+    public String productSave(
+            @RequestParam String title,
+            @RequestParam Map<String, Object> form,
+            @RequestParam("productId") Product product){
+
+        product.setTitle(title);
+
+
+        productRepository.save(product);
+        return "redirect:/product";
+    }
+
+
 }

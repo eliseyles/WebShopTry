@@ -1,15 +1,23 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<div class="card-columns">
-    <#list products as pr>
+<div class="card-columns" method="get">
+    <#list (products)! as pr>
     <div class="card my-3">
+        <input type="hidden" name="_csrf" value="${_csrf.token}" />
         <div class="m-2">
             <span>${pr.title}</span>
+        </div>
+        <div class="card-body">
+            <span>${pr.id}</span>
+            <!--<input type="hidden" name="_csrf" value="${_csrf.token}" />-->
+            <a href="/product/${(pr.id)!}">Go somewhere</a>
+
         </div>
         <div class="card-footer text-muted">
             <strong>${pr.ownerName}</strong>
         </div>
+
     </div>
     <#else>
     No products
