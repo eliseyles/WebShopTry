@@ -22,6 +22,7 @@
             </#if>
         <li class="nav-item">
             <form method="get" action="/main" class="form-inline">
+
                 <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search by title">
                 <button type="submit" class="btn btn-primary ml-2">Search</button>
             </form>
@@ -30,9 +31,15 @@
     </div>
     <#if isUser>
     <div>
+        <form action="/product" method="get">
+            <input type="hidden" name="_csrf" value="${_csrf.token}" />
+            <button class="btn btn-primary mr-4" type="submit" >Product list</button>
+        </form>
+    </div>
+    <div>
         <form action="/adding" >
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
-            <button class="btn btn-primary mr-4" type="submit" >добавить говно</button>
+            <button class="btn btn-primary mr-4" type="submit" >New product</button>
         </form>
     </div>
     </#if>
