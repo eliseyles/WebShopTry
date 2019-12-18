@@ -11,6 +11,11 @@
         <label class="col-sm-2 col-form-label"> Password: </label>
         <div class="col-sm-6">
             <input type="password" name="password" class="form-control" placeholder="Password"/>
+            <#if isRegisterForm>
+            <small id="passwordHelpBlock" class="form-text text-muted">
+                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+            </small>
+        </#if>
         </div>
     </div>
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
@@ -19,9 +24,9 @@
 </form>
 </#macro>
 
-<#macro logout>
+<#macro logout isLogin>
 <form action="/logout" method="post">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-    <button class="btn btn-primary" type="submit" >Sign Out</button>
+    <button class="btn btn-primary" type="submit" ><#if isLogin>Sign Out<#else>Sign In</#if></button>
 </form>
 </#macro>

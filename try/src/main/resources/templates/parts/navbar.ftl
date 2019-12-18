@@ -20,9 +20,27 @@
                 <a class="nav-link" href="/user">User List</a>
             </li>
             </#if>
+        <li class="nav-item">
+            <form method="get" action="/main" class="form-inline">
+                <input type="text" name="filter" class="form-control" value="${filter?ifExists}" placeholder="Search by title">
+                <button type="submit" class="btn btn-primary ml-2">Search</button>
+            </form>
+        </li>
         </ul>
     </div>
-
+    <#if isUser>
+    <div>
+        <form action="/adding" >
+            <input type="hidden" name="_csrf" value="${_csrf.token}" />
+            <button class="btn btn-primary mr-4" type="submit" >добавить говно</button>
+        </form>
+    </div>
+    </#if>
     <div class="navbar-text mr-4">${name}</div>
-    <@l.logout />
+
+    <#if isUser>
+    <@l.logout true/>
+    <#else>
+    <@l.logout false/>
+    </#if>
 </nav>
