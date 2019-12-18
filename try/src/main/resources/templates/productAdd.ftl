@@ -1,61 +1,71 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-<form class="needs-validation" novalidate>
+<form class="needs-validation" novalidate method="post">
     <div class="form-row">
-        <div class="col-md-4 mb-3">
-            <label for="validationTooltip01">First name</label>
-            <input type="text" class="form-control" id="validationTooltip01" value="Mark" required>
-            <div class="valid-tooltip">
-                Looks good!
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationTooltip02">Last name</label>
-            <input type="text" class="form-control" id="validationTooltip02" value="Otto" required>
-            <div class="valid-tooltip">
-                Looks good!
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="validationTooltipUsername">Username</label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
-                </div>
-                <input type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
-                <div class="invalid-tooltip">
-                    Please choose a unique and valid username.
-                </div>
-            </div>
+
+        <div class="col">
+            <label for="validationTooltip01">Product title</label>
+            <input type="text" class="form-control" name="title" id="validationTooltip01" placeholder="Title" required>
+            <input type="hidden" name="_csrf" value="${_csrf.token}" />
         </div>
     </div>
-    <div class="form-row">
-        <div class="col-md-6 mb-3">
-            <label for="validationTooltip03">City</label>
-            <input type="text" class="form-control" id="validationTooltip03" required>
-            <div class="invalid-tooltip">
-                Please provide a valid city.
-            </div>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label for="validationTooltip04">State</label>
-            <select class="custom-select" id="validationTooltip04" required>
-                <option selected disabled value="">Choose...</option>
-                <option>...</option>
-            </select>
-            <div class="invalid-tooltip">
-                Please select a valid state.
-            </div>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label for="validationTooltip05">Zip</label>
-            <input type="text" class="form-control" id="validationTooltip05" required>
-            <div class="invalid-tooltip">
-                Please provide a valid zip.
-            </div>
-        </div>
-    </div>
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <!--<div class="form-group">-->
+        <!--<label class="mt-2" for="exampleFormControlSelect2">Category</label>-->
+        <!--<select multiple class="form-control" id="exampleFormControlSelect2">-->
+            <!--<option>1</option>-->
+            <!--<option>2</option>-->
+            <!--<option>3</option>-->
+            <!--<option>4</option>-->
+            <!--<option>5</option>-->
+        <!--</select>-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+        <!--<label class="mt-1" for="exampleFormControlTextarea1">Description</label>-->
+        <!--<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+        <!--<label class="mt-1" for="exampleFormControlTextarea1">Price</label>-->
+        <!--<div class="input-group">-->
+            <!--<div class="input-group-prepend">-->
+                <!--<span class="input-group-text" id="inputGroupPrepend2">$</span>-->
+            <!--</div>-->
+            <!--<input type="text" class="form-control" id="price" value="20.00" required>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+        <!--<label class="mt-2" for="exampleFormControlSelect2">Location</label>-->
+        <!--<select multiple class="form-control" id="location">-->
+            <!--<option>1</option>-->
+            <!--<option>2</option>-->
+            <!--<option>3</option>-->
+            <!--<option>4</option>-->
+            <!--<option>5</option>-->
+        <!--</select>-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+        <!--<label for="validationTooltip01">Seller name</label>-->
+        <!--<input type="text" class="form-control" id="name" value="Name" required>-->
+        <!--<div class="valid-tooltip">-->
+            <!--Looks good!-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="form-group">-->
+        <!--<label class="mt-1" for="exampleFormControlTextarea1">Price</label>-->
+        <!--<div class="input-group">-->
+            <!--<div class="input-group-prepend">-->
+                <!--<span class="input-group-text" id="number">+375</span>-->
+            <!--</div>-->
+            <!--<input type="text" class="form-control" id="phoneNumber" value="25..." required>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <button class="btn btn-primary" type="submit" >Add product</button>
 </form>
 </@c.page>

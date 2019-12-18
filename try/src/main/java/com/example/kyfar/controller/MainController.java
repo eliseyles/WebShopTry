@@ -43,21 +43,8 @@ public class MainController {
     }
 
     @PostMapping("/main")
-    public String add(
-            @AuthenticationPrincipal User user,
-            @Valid Product product,
-            BindingResult bindingResult,
-            Model model) {
-        product.setOwner(user);
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errorsMap = ControllerUtils.getErrors(bindingResult);
+    public String add(Model model) {
 
-            model.mergeAttributes(errorsMap);
-            model.addAttribute("product", product);
-        } else {
-
-            productRepository.save(product);
-        }
 
         Iterable<Product> products = productRepository.findAll();
         model.addAttribute("products", products);
