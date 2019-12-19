@@ -9,9 +9,8 @@
             <span>${pr.title}</span>
         </div>
         <div class="card-body">
-            <span>${pr.id}</span>
             <!--<input type="hidden" name="_csrf" value="${_csrf.token}" />-->
-            <a href="/product/${(pr.id)!}">Go somewhere</a>
+            <a href="/product/${(pr.id)!}" class="btn btn-primary">Edit product</a>
 
         </div>
         <div class="card-footer text-muted">

@@ -11,4 +11,6 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     List<Product> findByOwner(User user);
 
+    Product findById(Product product);
+
 }

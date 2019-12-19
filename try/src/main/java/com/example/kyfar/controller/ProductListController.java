@@ -4,6 +4,8 @@ import com.example.kyfar.containers.ProductRepository;
 import com.example.kyfar.entity.Product;
 import com.example.kyfar.entity.Role;
 import com.example.kyfar.entity.User;
+import com.example.kyfar.service.ProductServise;
+import com.example.kyfar.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
 public class ProductListController {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductServise productServise;
 
 
     @GetMapping
@@ -32,9 +36,14 @@ public class ProductListController {
     }
 
     @GetMapping("{product}")
-    public String userEditForm(@PathVariable Product product, Model model) {
+    public String productEditForm(@PathVariable Product product, Model model) {
+
+//        if(deleteFilter != null && !deleteFilter.isEmpty()) {
+//            productRepository.delete(product);
+////            return "redirect:/product";
+//        }
+
         model.addAttribute("product", product);
-//        model.addAttribute("roles", Role.values());
         return "productEdit";
     }
 
@@ -45,9 +54,13 @@ public class ProductListController {
             @RequestParam("productId") Product product){
 
         product.setTitle(title);
-
-
         productRepository.save(product);
+        return "redirect:/product";
+    }
+
+    @GetMapping("/delete")
+    public String productDelete(@RequestParam("productId") Product product, Model model){
+        productRepository.delete(product);
         return "redirect:/product";
     }
 
