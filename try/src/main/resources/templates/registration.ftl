@@ -3,6 +3,10 @@
 
 <@c.page>
 <div class="mb-2">Add new user</div>
-${message?ifExists}
+<#if message??>
+<div class="alert alert-danger" role="alert">
+    ${message}
+</div>
+</#if>
 <@l.login "/registration" true />
 </@c.page>

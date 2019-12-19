@@ -1,5 +1,7 @@
 package com.example.kyfar.entity;
 
+import com.example.kyfar.validation.UserValidation;
+import com.example.kyfar.validation.Validation;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -40,16 +42,22 @@ public class User implements UserDetails {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public boolean setUsername(String username) {
+        if (UserValidation.isValidUsername(username)) {
+            this.username = username;
+        }
+        return UserValidation.isValidUsername(username);
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public boolean setPassword(String password) {
+        if (UserValidation.isValidPassword(password)) {
+            this.password = password;
+        }
+        return UserValidation.isValidPassword(password);
     }
 
     public boolean isActive() {

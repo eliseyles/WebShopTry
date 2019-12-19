@@ -1,9 +1,8 @@
 package com.example.kyfar.entity;
 
-import org.hibernate.validator.constraints.Length;
+import com.example.kyfar.validation.Validation;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
@@ -12,15 +11,11 @@ public class Product {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @NotBlank(message = "pls fill title")
-    @Length(max = 20, min = 2)
+
     private String title;
-    private Category category;
     private String description;
-    private double price;
-    private Location location;
-    private String name;
-    private String phone;
+    private String price;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -31,6 +26,13 @@ public class Product {
 
     public Product(String title, User owner) {
         this.title = title;
+        this.owner = owner;
+    }
+
+    public Product(String title, String description, String price, User owner) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
         this.owner = owner;
     }
 
@@ -58,77 +60,54 @@ public class Product {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
+    public boolean setTitle(String title) {
+        if (Validation.isValidTitle(title)) {
+            this.title = title;
+            return true;
+        }
+        return false;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public boolean setDescription(String description) {
+        if (Validation.isValidDescription(description)) {
+            this.description = description;
+            return true;
+        }
+        return false;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public boolean setPrice(String price) {
+        if (Validation.isValidPrice(price)) {
+            this.price = price;
+            return true;
+        }
+        return false;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 &&
-                Objects.equals(id, product.id) &&
+        return Objects.equals(id, product.id) &&
                 Objects.equals(title, product.title) &&
-                category == product.category &&
                 Objects.equals(description, product.description) &&
-                location == product.location &&
-                Objects.equals(name, product.name) &&
-                Objects.equals(phone, product.phone) &&
+                Objects.equals(price, product.price) &&
                 Objects.equals(owner, product.owner);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, category, description, price, location, name, phone, owner);
+        return Objects.hash(id, title, description, price, owner);
     }
 
     @Override
@@ -136,12 +115,8 @@ public class Product {
         return "Product{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", category=" + category +
                 ", description='" + description + '\'' +
-                ", price=" + price +
-                ", location=" + location +
-                ", name='" + name + '\'' +
-                ", phone='" + phone + '\'' +
+                ", price='" + price + '\'' +
                 ", owner=" + owner +
                 '}';
     }

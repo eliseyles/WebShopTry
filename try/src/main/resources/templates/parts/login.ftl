@@ -1,10 +1,16 @@
 <#macro login path isRegisterForm>
+
 <form action="${path}" method="post">
 
     <div class="form-group row">
         <label class="col-sm-2 col-form-label"> User Name:  </label>
         <div class="col-sm-6">
             <input type="text" name="username" class="form-control" placeholder="User name" />
+            <#if isRegisterForm>
+            <small id="passwordHelpBlock1" class="form-text text-muted">
+                Login must be 3-20 characters, contains only letters, numbers and under score
+            </small>
+        </#if>
         </div>
     </div>
     <div class="form-group row">
@@ -13,7 +19,7 @@
             <input type="password" name="password" class="form-control" placeholder="Password"/>
             <#if isRegisterForm>
             <small id="passwordHelpBlock" class="form-text text-muted">
-                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+                Your password must be 8-30 characters long.
             </small>
         </#if>
         </div>

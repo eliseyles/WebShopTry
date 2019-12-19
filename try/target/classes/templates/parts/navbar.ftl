@@ -12,9 +12,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="/main">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/main">Products</a>
-            </li>
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link" href="/main">Products</a>-->
+            <!--</li>-->
             <#if isAdmin>
             <li class="nav-item">
                 <a class="nav-link" href="/user">User List</a>

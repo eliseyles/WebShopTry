@@ -30,6 +30,9 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean addUser(User user) {
+        if (user == null) {
+            return false;
+        }
         User userFromDb = userRepository.findByUsername(user.getUsername());
 
         if (userFromDb != null) {
@@ -38,7 +41,7 @@ public class UserService implements UserDetailsService {
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(user.getPassword());
 
         userRepository.save(user);
 

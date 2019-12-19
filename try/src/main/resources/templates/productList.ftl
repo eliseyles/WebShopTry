@@ -5,16 +5,16 @@
     <#list (products)! as pr>
     <div class="card my-3">
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <div class="m-2">
-            <span>${pr.title}</span>
-        </div>
         <div class="card-body">
             <!--<input type="hidden" name="_csrf" value="${_csrf.token}" />-->
+            <h5 class="card-title">${pr.title}</h5>
+            <p class="card-text">${(pr.description)!}</p>
             <a href="/product/${(pr.id)!}" class="btn btn-primary">Edit product</a>
 
         </div>
         <div class="card-footer text-muted">
             <strong>${pr.ownerName}</strong>
+            <h6 class="card-text">${(pr.price)!}</h6>
         </div>
 
     </div>
