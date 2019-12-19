@@ -29,6 +29,15 @@ public class Product {
         this.owner = owner;
     }
 
+    public Product(String price, String title) {
+        this.title = title;
+        this.price = price;
+    }
+
+    public Product(String price) {
+        this.price = price;
+    }
+
     public Product(String title, String description, String price, User owner) {
         this.title = title;
         this.description = description;

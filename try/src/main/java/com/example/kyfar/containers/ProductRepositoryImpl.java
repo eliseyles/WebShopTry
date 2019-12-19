@@ -165,6 +165,7 @@ public class ProductRepositoryImpl {
                     return productList[i];
                 }
             }
+            return null;
         }
         return null;
     }

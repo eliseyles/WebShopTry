@@ -3,7 +3,7 @@ package com.example.kyfar.validation;
 import com.example.kyfar.exceptions.NullStringDataException;
 
 public class UserValidation {
-    public static boolean isValidUsername(String username) {
+        public static boolean isValidUsername(String username) {
         if (username == null) {
             throw new NullStringDataException();
         }
